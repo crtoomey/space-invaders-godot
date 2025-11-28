@@ -8,6 +8,7 @@ size = Vector2(4, 12)
 
 [node name="EnemyBullet" type="CharacterBody2D"]
 z_index = -1
+collision_layer = 8
 script = ExtResource("1_qx7rs")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
