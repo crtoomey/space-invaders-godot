@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://qcqxjrlrdluw"]
+
+[ext_resource type="Texture2D" uid="uid://d00wy7iuluoic" path="res://assets/space invader spaceship still.png" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://bo5t35jhnltpb" path="res://scenes/player.gd" id="1_g2els"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g2els"]
+radius = 13.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_g2els"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 3.0
+spread = 30.0
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+gravity = Vector3(0, 980, 0)
+color = Color(0.37254903, 0.7882353, 0.90588236, 1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qhqgy"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 3.0
+gravity = Vector3(0, 980, 0)
+color = Color(0.37254903, 0.7882353, 0.90588236, 1)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_g2els")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_3vyb7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_g2els")
+
+[node name="LeftEngineParticles" type="GPUParticles2D" parent="."]
+z_index = -1
+position = Vector2(-9, 16)
+amount = 10
+fixed_fps = 0
+draw_order = 0
+process_material = SubResource("ParticleProcessMaterial_g2els")
+
+[node name="RightEngineParticles" type="GPUParticles2D" parent="."]
+z_index = -1
+position = Vector2(9, 16)
+amount = 10
+fixed_fps = 0
+draw_order = 0
+process_material = SubResource("ParticleProcessMaterial_qhqgy")

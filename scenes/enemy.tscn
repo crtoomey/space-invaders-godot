@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://mn5kfd382m4g"]
+
+[ext_resource type="Texture2D" uid="uid://cdj31h1prkywb" path="res://assets/space invader enemy one.png" id="1_7p1mj"]
+[ext_resource type="Script" uid="uid://b7724ikbq1ni" path="res://scripts/enemy.gd" id="1_md0e3"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_md0e3"]
+radius = 15.0
+height = 32.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7p1mj"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 3.0
+gravity = Vector3(0, -980, 0)
+color = Color(1, 0.3647059, 0.8, 1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_md0e3"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 3.0
+gravity = Vector3(0, -980, 0)
+color = Color(1, 0.3647059, 0.8, 1)
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_md0e3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_7p1mj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_md0e3")
+
+[node name="LeftEngineParticles" type="GPUParticles2D" parent="."]
+z_index = -1
+position = Vector2(-12, -15)
+amount = 45
+fixed_fps = 60
+local_coords = true
+draw_order = 0
+process_material = SubResource("ParticleProcessMaterial_7p1mj")
+
+[node name="RightEngineParticles" type="GPUParticles2D" parent="."]
+z_index = -1
+position = Vector2(12, -15)
+amount = 45
+fixed_fps = 60
+local_coords = true
+draw_order = 0
+process_material = SubResource("ParticleProcessMaterial_md0e3")

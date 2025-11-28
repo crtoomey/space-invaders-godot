@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://dt4vr5xca1ct4"]
+
+[ext_resource type="Texture2D" uid="uid://c16y0mg7two4j" path="res://assets/spaceinvader player bullet.png" id="1_4g3gs"]
+[ext_resource type="Script" uid="uid://btbpxdjkvgdj4" path="res://scripts/player_bullet.gd" id="1_46jqs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_46jqs"]
+size = Vector2(4, 12)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_46jqs"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 98, 0)
+
+[node name="PlayerBullet" type="CharacterBody2D"]
+z_index = -1
+script = ExtResource("1_46jqs")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_4g3gs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_46jqs")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+z_index = -1
+amount = 15
+fixed_fps = 60
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_46jqs")

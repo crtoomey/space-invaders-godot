@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://ctlbn4c021r8j"]
+
+[ext_resource type="Texture2D" uid="uid://da5u08cd2talc" path="res://assets/spaceinvader enemy bullet.png" id="1_d2qol"]
+[ext_resource type="Script" uid="uid://b86kd65wqexc1" path="res://scripts/enemy_bullet.gd" id="1_qx7rs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_46jqs"]
+size = Vector2(4, 12)
+
+[node name="EnemyBullet" type="CharacterBody2D"]
+z_index = -1
+script = ExtResource("1_qx7rs")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_d2qol")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_46jqs")
+
+[node name="GPUParticles2D" type="CPUParticles2D" parent="."]
+z_index = -1
+amount = 15
+fixed_fps = 60
+local_coords = true
+draw_order = 1
+gravity = Vector2(0, -98)
