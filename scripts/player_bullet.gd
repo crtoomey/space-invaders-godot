@@ -8,8 +8,7 @@ var hasExploded = false
 
 
 func _process(delta: float) -> void:
-	if hasExploded == false:
-		position.y += -1 * 200 * delta
+	position.y += -1 * 200 * delta
 	
 	# this returns some info about the object the ball collides with but I don't understand it fully yet
 	var collision = move_and_collide(velocity * delta)
@@ -18,6 +17,9 @@ func _process(delta: float) -> void:
 	if collision:
 		
 		if collision.get_collider().has_method("enemyHit"):
-			
 			collision.get_collider().enemyHit()
+			player_bullet.queue_free()
+			
+		if collision.get_collider().has_method("bunkerHit"):
+			collision.get_collider().bunkerHit()
 			player_bullet.queue_free()

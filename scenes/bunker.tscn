@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://dq5ivflcd4me2"]
+
+[ext_resource type="Texture2D" uid="uid://cua6wgbmpbrs6" path="res://assets/space invaders bunker.png" id="1_764y3"]
+[ext_resource type="Script" uid="uid://bacefpn71rc07" path="res://scripts/bunker.gd" id="1_ewk1p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_764y3"]
+size = Vector2(64, 64)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ewk1p"]
+particle_flag_disable_z = true
+emission_shape = 2
+emission_sphere_radius = 14.2
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_min = 160.19
+initial_velocity_max = 160.19
+gravity = Vector3(0, 0, 0)
+
+[node name="Bunker" type="StaticBody2D"]
+collision_layer = 64
+collision_mask = 0
+script = ExtResource("1_ewk1p")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("1_764y3")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_764y3")
+
+[node name="ExplosionParticles" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 200
+one_shot = true
+explosiveness = 1.0
+randomness = 0.65
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_ewk1p")
