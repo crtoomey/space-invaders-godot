@@ -38,13 +38,15 @@ script = ExtResource("1_md0e3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_7p1mj")
+centered = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(16, 16)
 shape = SubResource("CapsuleShape2D_md0e3")
 
 [node name="LeftEngineParticles" type="GPUParticles2D" parent="."]
 z_index = -1
-position = Vector2(-12, -15)
+position = Vector2(4, 1)
 amount = 45
 fixed_fps = 60
 local_coords = true
@@ -53,7 +55,7 @@ process_material = SubResource("ParticleProcessMaterial_7p1mj")
 
 [node name="RightEngineParticles" type="GPUParticles2D" parent="."]
 z_index = -1
-position = Vector2(12, -15)
+position = Vector2(28, 1)
 amount = 45
 fixed_fps = 60
 local_coords = true
@@ -61,6 +63,7 @@ draw_order = 0
 process_material = SubResource("ParticleProcessMaterial_md0e3")
 
 [node name="ExplosionParticles" type="GPUParticles2D" parent="."]
+position = Vector2(16, 16)
 emitting = false
 amount = 200
 one_shot = true
@@ -68,3 +71,7 @@ explosiveness = 1.0
 randomness = 0.65
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_4ra3w")
+
+[node name="EnemyBulletTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
