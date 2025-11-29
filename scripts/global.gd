@@ -5,4 +5,4 @@ var life = 3
 
 func getEnemies():
 	var enemyArray = get_tree().get_nodes_in_group("Enemies")
-	print(enemyArray)
+	return enemyArray

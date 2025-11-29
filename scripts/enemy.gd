@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 var direction = 1
 var speed = 32
+var randNum = randf_range(5,30)
 
 @onready var enemyBulletObject = preload("res://scenes/enemy_bullet.tscn")
 @onready var game: Node2D = $".."
@@ -14,6 +15,10 @@ var speed = 32
 
 func  _ready() -> void:
 	startDirection()
+	# start initial timer
+	enemy_bullet_timer.wait_time = randNum
+	enemy_bullet_timer.start()
+	
 
 
 func _physics_process(delta: float) -> void:
@@ -24,41 +29,43 @@ func _physics_process(delta: float) -> void:
 	
 		# check to see if a collision occurred
 	if collision:
-		print("collision")
-		direction = direction * -1
-		await get_tree().create_timer(.5).timeout
+		if collision.get_collider().name == "Borders":
+			print("collision")
+			direction = direction * -1
+			#velocity.x = 0
+			await get_tree().create_timer(.5).timeout
+			velocity.x = speed * direction
+			var yCoord = position.y
 		
-		var yCoord = position.y
+			if position.y < yCoord + 32:
+				position.y += 64 * delta
+			else:
+				velocity.y = 0
 		
-		if position.y < yCoord + 32:
-			position.y += 64 * delta
-		else:
-			velocity.y = 0
-		velocity.x = speed * direction
 		
 	
 	
-func fireRandomly():
-	var enemyBullet = enemyBulletObject.instantiate()
-	game.add_child(enemyBullet)
-	enemyBullet.position = position
+#func fireRandomly():
+	#var randNum = randf_range(5, 20)
+	#await get_tree().create_timer(randNum).timeout
+	
 
 
-func _on_enemy_bullet_timer_timeout() -> void:
-	enemy_bullet_timer.wait_time = randf_range(3, 10)
-	fireRandomly()
+	
 
 func enemyHit():
 	explosion_particles.emitting = true
 	#explosion_animation.play()
 	
 func startDirection():
-
 	velocity = Vector2(speed, 0)
 
 
+func _on_enemy_bullet_timer_timeout() -> void:
+	var enemyBullet = enemyBulletObject.instantiate()
+	game.add_child(enemyBullet)
+	enemyBullet.position = position
 	
-
-	
-	
-	
+	# reset timer
+	enemy_bullet_timer.wait_time = randNum
+	enemy_bullet_timer.start()
