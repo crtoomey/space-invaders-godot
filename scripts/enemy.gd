@@ -11,6 +11,8 @@ var randNum = randf_range(5,30)
 @onready var enemy: CharacterBody2D = $"."
 @onready var explosion_particles: GPUParticles2D = $ExplosionParticles
 @onready var enemy_bullet_timer: Timer = $EnemyBulletTimer
+@onready var left_engine_particles: GPUParticles2D = $LeftEngineParticles
+@onready var right_engine_particles: GPUParticles2D = $RightEngineParticles
 
 
 func  _ready() -> void:
@@ -30,7 +32,7 @@ func _physics_process(delta: float) -> void:
 		# check to see if a collision occurred
 	if collision:
 		if collision.get_collider().name == "Borders":
-			print("collision")
+			#print("collision")
 			direction = direction * -1
 			#velocity.x = 0
 			await get_tree().create_timer(.5).timeout
@@ -54,8 +56,21 @@ func _physics_process(delta: float) -> void:
 	
 
 func enemyHit():
+	Global.score += 100
+	print(Global.score)
 	explosion_particles.emitting = true
 	#explosion_animation.play()
+	left_engine_particles.emitting = false
+	right_engine_particles.emitting = false
+	sprite_2d.visible = false
+	await get_tree().create_timer(0.2).timeout
+	sprite_2d.visible = true
+	await get_tree().create_timer(0.2).timeout
+	sprite_2d.visible = false
+	await get_tree().create_timer(0.2).timeout
+	sprite_2d.visible = true
+	await get_tree().create_timer(0.2).timeout
+	enemy.queue_free()
 	
 func startDirection():
 	velocity = Vector2(speed, 0)

@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://bo5t35jhnltpb" path="res://scripts/player.gd" id="1_g2els"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g2els"]
-radius = 9.0
+radius = 13.0
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_g2els"]
 particle_flag_disable_z = true
