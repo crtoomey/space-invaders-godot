@@ -13,9 +13,18 @@ var randNum = randf_range(5,30)
 @onready var enemy_bullet_timer: Timer = $EnemyBulletTimer
 @onready var left_engine_particles: GPUParticles2D = $LeftEngineParticles
 @onready var right_engine_particles: GPUParticles2D = $RightEngineParticles
+@onready var explosion_audio: AudioStreamPlayer2D = $ExplosionAudio
+@onready var shoot_audio: AudioStreamPlayer2D = $ShootAudio
 
 
 func  _ready() -> void:
+	sprite_2d.visible = false
+	await get_tree().create_timer(0.2).timeout
+	sprite_2d.visible = true
+	await get_tree().create_timer(0.2).timeout
+	sprite_2d.visible = false
+	await get_tree().create_timer(0.2).timeout
+	sprite_2d.visible = true
 	startDirection()
 	# start initial timer
 	enemy_bullet_timer.wait_time = randNum
@@ -46,19 +55,19 @@ func _physics_process(delta: float) -> void:
 		
 		
 	
-	
-#func fireRandomly():
-	#var randNum = randf_range(5, 20)
-	#await get_tree().create_timer(randNum).timeout
+
 	
 
 
 	
 
 func enemyHit():
+	explosion_audio.play()
 	Global.score += 100
-	print(Global.score)
+	#print(Global.score)
+	Global.enemyNum -= 1
 	explosion_particles.emitting = true
+	collision_shape_2d.disabled = true
 	#explosion_animation.play()
 	left_engine_particles.emitting = false
 	right_engine_particles.emitting = false
@@ -77,10 +86,11 @@ func startDirection():
 
 
 func _on_enemy_bullet_timer_timeout() -> void:
+	shoot_audio.play()
 	var enemyBullet = enemyBulletObject.instantiate()
 	game.add_child(enemyBullet)
 	enemyBullet.position = position
-	
+	randNum = randf_range(5,30)
 	# reset timer
 	enemy_bullet_timer.wait_time = randNum
 	enemy_bullet_timer.start()

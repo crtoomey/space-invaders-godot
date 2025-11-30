@@ -24,6 +24,10 @@ func _process(delta: float) -> void:
 			collision.get_collider().bunkerHit()
 			player_bullet.queue_free()
 		
+		if collision.get_collider().has_method("mothershipHit"):
+			collision.get_collider().mothershipHit()
+			player_bullet.queue_free()
+		
 		if collision.get_collider().has_method("secretExplosion"):
 			collision.get_collider().secretExplosion()
 			player_bullet.queue_free()

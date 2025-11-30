@@ -5,9 +5,11 @@ var bunkerLife = 10
 @onready var explosion_particles: GPUParticles2D = $ExplosionParticles
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var bunker: StaticBody2D = $"."
+@onready var explosion_audio: AudioStreamPlayer2D = $ExplosionAudio
 
 func bunkerHit():
-	print("bunker hit")
+	#print("bunker hit")
+	explosion_audio.play()
 	bunkerLife -= 1
 	explosion_particles.emitting = true
 	sprite_2d.region_enabled = true

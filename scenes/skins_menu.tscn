@@ -1,0 +1,102 @@
+[gd_scene load_steps=5 format=3 uid="uid://dmpyswnpsh2ou"]
+
+[ext_resource type="Texture2D" uid="uid://cajkngl30y7rs" path="res://assets/space invaders game arena.png" id="1_sba64"]
+[ext_resource type="Script" uid="uid://barehxxxmvfvb" path="res://scripts/skins_menu.gd" id="1_wev7o"]
+[ext_resource type="PackedScene" uid="uid://dbu1aw466wk5m" path="res://scenes/menu_ship.tscn" id="2_gx1ot"]
+[ext_resource type="AudioStream" uid="uid://clruu8sw3qddb" path="res://assets/space invaders click sound.wav" id="4_cwsrx"]
+
+[node name="SkinsMenu" type="Node2D"]
+script = ExtResource("1_wev7o")
+
+[node name="Label" type="Label" parent="."]
+z_index = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 126.0
+offset_top = 58.0
+offset_right = 834.0
+offset_bottom = 151.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "Skins"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(480, 270)
+texture = ExtResource("1_sba64")
+
+[node name="MenuShip" parent="." instance=ExtResource("2_gx1ot")]
+position = Vector2(480, 270)
+
+[node name="Outline" type="Node" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="Outline"]
+offset_right = 960.0
+offset_bottom = 174.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="Outline"]
+offset_top = 366.0
+offset_right = 960.0
+offset_bottom = 540.0
+color = Color(0.00011382803, 0.00011382803, 0.00011382803, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="Outline"]
+offset_right = 294.0
+offset_bottom = 540.0
+color = Color(0.00011382803, 0.00011382803, 0.00011382803, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="Outline"]
+offset_left = 665.0
+offset_right = 959.0
+offset_bottom = 540.0
+color = Color(0.00011382803, 0.00011382803, 0.00011382803, 1)
+
+[node name="RightButton" type="Button" parent="."]
+z_index = 1
+offset_left = 800.0
+offset_top = 245.0
+offset_right = 835.0
+offset_bottom = 295.0
+theme_override_font_sizes/font_size = 30
+text = ">"
+
+[node name="LeftButton" type="Button" parent="."]
+z_index = 1
+offset_left = 128.0
+offset_top = 245.0
+offset_right = 163.0
+offset_bottom = 295.0
+theme_override_font_sizes/font_size = 30
+text = "<"
+
+[node name="MainMenuButton" type="Button" parent="."]
+z_index = 1
+offset_left = 432.0
+offset_top = 480.0
+offset_right = 528.0
+offset_bottom = 511.0
+text = "Main Menu"
+
+[node name="SetSkinButton" type="Button" parent="."]
+z_index = 1
+offset_left = 432.0
+offset_top = 380.0
+offset_right = 528.0
+offset_bottom = 411.0
+text = "Set Skin"
+
+[node name="ClickSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_cwsrx")
+
+[connection signal="pressed" from="RightButton" to="." method="_on_right_button_pressed"]
+[connection signal="pressed" from="LeftButton" to="." method="_on_left_button_pressed"]
+[connection signal="pressed" from="MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="SetSkinButton" to="." method="_on_set_skin_button_pressed"]

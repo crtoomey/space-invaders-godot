@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dq5ivflcd4me2"]
+[gd_scene load_steps=6 format=3 uid="uid://dq5ivflcd4me2"]
 
 [ext_resource type="Texture2D" uid="uid://cua6wgbmpbrs6" path="res://assets/space invaders bunker.png" id="1_764y3"]
 [ext_resource type="Script" uid="uid://bacefpn71rc07" path="res://scripts/bunker.gd" id="1_ewk1p"]
+[ext_resource type="AudioStream" uid="uid://cs6fa87cq0s8m" path="res://assets/space invaders explosion.wav" id="3_cyfgi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_764y3"]
 size = Vector2(64, 64)
@@ -38,3 +39,6 @@ explosiveness = 1.0
 randomness = 0.65
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_ewk1p")
+
+[node name="ExplosionAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_cyfgi")

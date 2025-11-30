@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://qcqxjrlrdluw"]
+[gd_scene load_steps=9 format=3 uid="uid://qcqxjrlrdluw"]
 
 [ext_resource type="Texture2D" uid="uid://d00wy7iuluoic" path="res://assets/space invader spaceship still.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://bo5t35jhnltpb" path="res://scripts/player.gd" id="1_g2els"]
+[ext_resource type="AudioStream" uid="uid://dxnlyk87du4sk" path="res://assets/space invaders player firing.wav" id="3_qhqgy"]
+[ext_resource type="AudioStream" uid="uid://cs6fa87cq0s8m" path="res://assets/space invaders explosion.wav" id="4_dqkch"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g2els"]
 radius = 13.0
@@ -73,3 +75,10 @@ explosiveness = 1.0
 randomness = 0.65
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_dqkch")
+
+[node name="ShootAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_qhqgy")
+volume_db = -2.0
+
+[node name="ExplosionAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_dqkch")

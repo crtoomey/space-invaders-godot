@@ -1,13 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://dobyb1e35sxun"]
+[gd_scene load_steps=8 format=3 uid="uid://dobyb1e35sxun"]
 
 [ext_resource type="Script" uid="uid://cgkyym7thamve" path="res://scripts/game.gd" id="1_lbhrr"]
 [ext_resource type="Texture2D" uid="uid://cajkngl30y7rs" path="res://assets/space invaders game arena.png" id="2_iywne"]
 [ext_resource type="PackedScene" uid="uid://qcqxjrlrdluw" path="res://scenes/player.tscn" id="2_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://dq5ivflcd4me2" path="res://scenes/bunker.tscn" id="4_lbhrr"]
 [ext_resource type="Script" uid="uid://cjuymtsarhh0r" path="res://scripts/camera_2d.gd" id="5_iywne"]
+[ext_resource type="Texture2D" uid="uid://dn2snxfeai2pn" path="res://assets/space invaders shield.png" id="6_p57ef"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lnu2h"]
-size = Vector2(20, 540)
+size = Vector2(20, 1155)
 
 [node name="Game" type="Node2D" groups=["Enemies"]]
 script = ExtResource("1_lbhrr")
@@ -28,11 +29,11 @@ collision_layer = 2
 collision_mask = 4
 
 [node name="Right" type="CollisionShape2D" parent="Borders"]
-position = Vector2(970, 270)
+position = Vector2(970, -37)
 shape = SubResource("RectangleShape2D_lnu2h")
 
 [node name="Left" type="CollisionShape2D" parent="Borders"]
-position = Vector2(-10, 270)
+position = Vector2(-10, -37.5)
 shape = SubResource("RectangleShape2D_lnu2h")
 
 [node name="Bunkers" type="Node" parent="."]
@@ -55,3 +56,23 @@ position = Vector2(832, 420)
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
 script = ExtResource("5_iywne")
+
+[node name="Score" type="Label" parent="."]
+offset_left = 32.0
+offset_top = 19.0
+offset_right = 126.0
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 28
+text = "000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ShieldsUI" type="Sprite2D" parent="."]
+position = Vector2(860, 39)
+texture = ExtResource("6_p57ef")
+region_enabled = true
+
+[node name="MothershipTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="timeout" from="MothershipTimer" to="." method="_on_mothership_timer_timeout"]

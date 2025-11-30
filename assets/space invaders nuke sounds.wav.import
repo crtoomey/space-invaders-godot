@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://crh1d6ge303ev"
+path="res://.godot/imported/space invaders nuke sounds.wav-24b16b58e965de5be0c34d4a6b7d721a.sample"
+
+[deps]
+
+source_file="res://assets/space invaders nuke sounds.wav"
+dest_files=["res://.godot/imported/space invaders nuke sounds.wav-24b16b58e965de5be0c34d4a6b7d721a.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

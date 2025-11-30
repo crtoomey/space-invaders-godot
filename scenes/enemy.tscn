@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://mn5kfd382m4g"]
+[gd_scene load_steps=9 format=3 uid="uid://mn5kfd382m4g"]
 
 [ext_resource type="Texture2D" uid="uid://cdj31h1prkywb" path="res://assets/space invader enemy one.png" id="1_7p1mj"]
 [ext_resource type="Script" uid="uid://b7724ikbq1ni" path="res://scripts/enemy.gd" id="1_md0e3"]
+[ext_resource type="AudioStream" uid="uid://b4fjj32nbloqk" path="res://assets/space invaders enemy firing.wav" id="3_4ra3w"]
+[ext_resource type="AudioStream" uid="uid://cs6fa87cq0s8m" path="res://assets/space invaders explosion.wav" id="4_5uy6h"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_md0e3"]
 radius = 14.0
@@ -75,5 +77,11 @@ fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_4ra3w")
 
 [node name="EnemyBulletTimer" type="Timer" parent="."]
+
+[node name="ShootAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_4ra3w")
+
+[node name="ExplosionAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_5uy6h")
 
 [connection signal="timeout" from="EnemyBulletTimer" to="." method="_on_enemy_bullet_timer_timeout"]
